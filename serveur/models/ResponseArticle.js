@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const devoirSchema = new Schema({
+const responseArticleSchema = new Schema({
     titre:{
         type:String,
         required:true
@@ -18,9 +18,9 @@ const devoirSchema = new Schema({
         type:String,
         required:true
     },
-    creator:{
-        type:Schema.Types.ObjectId,
-        ref:'Classe'
+    classe:{
+        type:String,
+        required:true
     },
     createdCommentaires:[
         {
@@ -30,4 +30,4 @@ const devoirSchema = new Schema({
     ]
 });
 
-module.exports = mongoose.model('Devoir', devoirSchema);
+module.exports = mongoose.model('ResponseArticle', responseArticleSchema);

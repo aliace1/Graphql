@@ -25,6 +25,8 @@ type AuthData {
     userId: ID!
     token: String!
     tokenExpiration: Int!
+    isAdmin: String!
+    isAjout: String!
 }
 
 type Article {
@@ -35,6 +37,10 @@ type Article {
     date: String!
     creator: String!
     createdCommentaires: [Commentaire!]
+}
+
+type isDelete {
+    action: Boolean!
 }
 
 type Livre {
@@ -60,7 +66,29 @@ type Commentaire {
     _id: ID!
     commentaire: String!
     date: String!
-    creator: Article!
+    creator: String!
+    createdUsers:[User!]
+    createdCommentaires:[Commentaire!]
+}
+
+type RespCommentaire {
+    _id: ID!
+    idCommentaire: String!
+    commentaire: String!
+    date: String!
+    creator: String!
+    createdUsers: [User!]
+    
+}
+
+type ResponseArticle {
+    _id: ID!
+    titre: String!
+    matiere: String!
+    contenu: String!
+    date: String!
+    classe: Classe
+    createdCommentaires: [Commentaire!]
 }
 
 input ClasseInput {
@@ -99,11 +127,23 @@ input DevoirInput {
     matiere: String!
     contenu: String!
     date: String!
+    creator: String!
 }
 
 input CommentaireInput {
     commentaire: String!
     date: String!
+    creator: String!
+    createdUsers: String!
+
+}
+
+input RespCommentaireInput {
+    idCommentaire: String!
+    commentaire: String!
+    date: String!
+    creator: String!
+    createdUsers: String!
 }
 
 type RootQuery {
@@ -111,6 +151,7 @@ type RootQuery {
     articles: [Article!]!
     livres: [Livre!]!
     commentaires: [Commentaire!]!
+    respCommentaires: [RespCommentaire!]!
     devoirs: [Devoir!]!
     users: [User!]!
     login(email:String!, password:String): AuthData!
@@ -123,14 +164,19 @@ type RootMutation {
     createLivre(livreInput: LivreInput): Livre
     createDevoir(devoirInput: DevoirInput): Devoir
     createCommentaire(commentaireInput: CommentaireInput): Commentaire
-    deleteUser(userId: ID!): User
-    deleteArticle(articleId: ID!): Article
-    deleteLivre(livreId: ID!): Livre
-    deleteClasse(classeId: ID!):Classe
-    deleteCommentaire(commentaireId: ID!):Commentaire
-    deleteDevoir(devoirId: ID!): Devoir
+    createRespCommentaire(respCommentaireInput: RespCommentaireInput): RespCommentaire
+    deleteUser(userId: ID!): isDelete
+    deleteArticle(articleId: ID!): isDelete
+    deleteLivre(livreId: ID!): isDelete
+    deleteClasse(classeId: ID!): isDelete
+    deleteCommentaire(commentaireId: ID!): isDelete
+    deleteDevoir(devoirId: ID!): isDelete
+    updateCommentaire(commentaireId: ID!, commentaire: String!):Commentaire
+    updateLivre(livreId: ID!, titre: String!, matiere: String!, contenu: String!): Livre
+    updateDevoir(devoirId: ID!, titre: String!, matiere: String!, contenu: String!): Devoir
+    updateArticle(articleId: ID!, titre: String!, matiere: String!, contenu: String!): Article
     updateClasse(classeId: ID!, nom: String!): Classe
-    updateUser(userId: ID!, nom: String!, prenom: String!, matricule: String!, email: String!): User
+    updateUser(userId: ID!, nom: String!, prenom: String!, matricule: String!, email: String!, isAdmin: String!, isAjout: String!): User
 }
 
 schema {

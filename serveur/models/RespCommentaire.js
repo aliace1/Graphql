@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const commentaireSchema = new Schema({
+const respCommentaireSchema = new Schema({
+    idCommentaire:{
+        type:String,
+        required:true
+    },
     commentaire:{
         type:String,
         required:true
@@ -12,7 +16,7 @@ const commentaireSchema = new Schema({
     },
     creator:{
         type:Schema.Types.ObjectId,
-        ref:('Article', 'Devoir', 'Livre')
+        ref:'Commentaire'
     },
     createdUsers:[
         {
@@ -20,12 +24,6 @@ const commentaireSchema = new Schema({
             ref:'User'
         }
     ],
-    createdCommentaires:[
-        {
-            type:Schema.Types.ObjectId,
-            ref:'RespCommentaire'
-        }
-    ]
 });
 
-module.exports = mongoose.model('Commentaire', commentaireSchema);
+module.exports = mongoose.model('RespCommentaire', respCommentaireSchema);
