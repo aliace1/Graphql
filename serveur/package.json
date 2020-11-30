@@ -2,9 +2,11 @@
   "name": "serveur",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2 start app.js",
+    "stop": "pm2 stop app.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +22,7 @@
     "http-proxy-middleware": "^1.0.6",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.12",
+    "pm2": "^4.5.0",
     "word-text-parser": "^1.0.1"
   }
 }
