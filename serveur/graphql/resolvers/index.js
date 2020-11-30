@@ -344,9 +344,9 @@ module.exports = {
         }
     },
     createDevoir: async (args,req) => {
-        if(!req.isAuth){
-            throw new Error('Non authorisé!')
-        }
+        // if(!req.isAuth){
+        //     throw new Error('Non authorisé!')
+        // }
         const devoir = new Devoir({
             titre:args.devoirInput.titre,
             matiere:args.devoirInput.matiere,
@@ -416,10 +416,10 @@ module.exports = {
         }
     },
     createLivre: async (args, req) => {
-        // console.log(req);
-        if(!req.isAuth){
-            throw new Error('Non authorisé!')
-        }
+        // console.log(req.isAuth);
+        // if(!req.isAuth){
+        //     throw new Error('Non authorisé!')
+        // }
         try{
             // console.log("createLivre");
             const livre = new Livre({
@@ -502,8 +502,8 @@ module.exports = {
             throw err
         }
     },
-    createArticle: async (args) => {
-        // console.log(req);
+    createArticle: async (args, req) => {
+        // console.log(args);
         // if(!req.isAuth){
         //     throw new Error('Non authorisé!')
         // }
