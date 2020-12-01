@@ -470,9 +470,9 @@ module.exports = {
 
     //Article Resolver
     articles: async(args, req) => {
-        if(!req.isAuth){
-            throw new Error('Non authorisé!')
-        }
+        // if(!req.isAuth){
+        //     throw new Error('Non authorisé!')
+        // }
         try{
             let articles = await Article.find()
             
