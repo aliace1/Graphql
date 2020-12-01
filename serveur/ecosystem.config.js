@@ -1,11 +1,20 @@
 module.exports = {
-  apps : [{
-    script: 'index.js',
-    watch: '.'
-  }, {
-    script: './service-worker/',
-    watch: ['./service-worker']
-  }],
+  apps: [
+    {
+      name: "back-end",
+      script: "app.js",
+      instances: 2,
+      autorestart: true,
+      watch: false,
+      max_memory_restart: "2G",
+      env: {
+        NODE_ENV: "development",
+      },
+      env_production: {
+        NODE_ENV: "production",
+      },
+    },
+  ],
 
   deploy : {
     production : {
