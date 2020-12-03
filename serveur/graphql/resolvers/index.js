@@ -660,7 +660,7 @@ module.exports = {
         if(!isEqual){
             throw new Error('Mots de passe incorrecte!')
         }
-        const token = jwt.sign({userId: user.id, email: user.email}, 'somesupersecretkey', {
+        const token = jwt.sign({userId: user.id, email: user.email, creator:user.creator}, 'somesupersecretkey', {
             expiresIn: '168h'
         });
         return {userId: user.id, token:token, tokenExpiration: 1, isAdmin:user.isAdmin, isAjout:user.isAjout};
@@ -742,7 +742,7 @@ module.exports = {
         }
         try{
             let user = await User.findById(args.userId)
-            await user.updateOne({nom:args.nom, prenom:args.prenom, matricule:args.matricule, email:args.email, isAdmin:args.isAdmin, isAjout:args.isAjout})
+            await user.updateOne({nom:args.nom, prenom:args.prenom, matricule:args.matricule, email:args.email, creator:args.creator, isAdmin:args.isAdmin, isAjout:args.isAjout})
             return user.save();
         }
         catch(err){

@@ -7,6 +7,8 @@ type Classe {
     createdUsers: [User!]
     createdArticles: [Article!]
     createdDevoirs: [Devoir!]
+    createdLivres: [Livre!]!
+
 }
 
 type User {
@@ -176,7 +178,7 @@ type RootMutation {
     updateDevoir(devoirId: ID!, titre: String!, matiere: String!, contenu: String!): Devoir
     updateArticle(articleId: ID!, titre: String!, matiere: String!, contenu: String!): Article
     updateClasse(classeId: ID!, nom: String!): Classe
-    updateUser(userId: ID!, nom: String!, prenom: String!, matricule: String!, email: String!, isAdmin: String!, isAjout: String!): User
+    updateUser(userId: ID!, nom: String!, prenom: String!, matricule: String!, email: String!, creator: String!, isAdmin: String!, isAjout: String!): User
 }
 
 schema {
