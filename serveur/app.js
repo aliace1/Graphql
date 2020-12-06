@@ -39,7 +39,7 @@ app.use(cors({
 
 app.use(bodyParser.text({ type: 'text/html' }));
 // app.use(bodyParser.urlencoded()); 
-app.use(bodyParser.json({limit: '1mb'}));
+app.use(bodyParser.json({limit: '1gb'}));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
