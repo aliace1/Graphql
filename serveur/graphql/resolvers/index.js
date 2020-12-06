@@ -397,9 +397,9 @@ module.exports = {
 
     //Livre Resolver
     livres: async (args, req) => {
-        if(!req.isAuth){
-            throw new Error('Non authorisé!')
-        }
+        // if(!req.isAuth){
+        //     throw new Error('Non authorisé!')
+        // }
         try{
             let livres = await Livre.find()
             // return livres.map(livre => {
